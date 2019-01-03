@@ -58,7 +58,7 @@ const config = {
     { level: 3,
       name: "Administrator", 
       check: (message) => {
-        try { //makes level three go off of permissions instead of a role name tbh i prefer this
+        try { //makes level three go off of permissions instead of a role name
          if (message.member.hasPermission('ADMINISTRATOR', [false], [true], [true])) return true;
         } catch (e) {
           return false;
