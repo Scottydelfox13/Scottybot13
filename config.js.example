@@ -20,7 +20,6 @@ const config = {
     "prefix": "-",
     "modLogChannel": "mod-log",
     "modRole": "Moderator",
-    "adminRole": "Administrator",
     "systemNotice": "true", // This gives a notice when a user tries to run a command that they do not have permission to use.
     "welcomeChannel": "welcome",
     "welcomeMessage": "Say hello to {{user}}, everyone! We all need a warm welcome sometimes :D",
@@ -59,9 +58,8 @@ const config = {
     { level: 3,
       name: "Administrator", 
       check: (message) => {
-        try {
-          const adminRole = message.guild.roles.find(r => r.name.toLowerCase() === message.settings.adminRole.toLowerCase());
-          return (adminRole && message.member.roles.has(adminRole.id));
+        try { //makes level three go off of permissions instead of a role name tbh i prefer this
+         if (message.member.hasPermission('ADMINISTRATOR', [false], [true], [true])) return true;
         } catch (e) {
           return false;
         }
