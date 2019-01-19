@@ -14,6 +14,6 @@ also please upvote it!!
 
 ## Support Server
 
-
+[![](https://discordapp.com/api/guilds/533779781326471179/embed.png?style=banner1)](https://discord.gg/HTuAE28)
 
 
