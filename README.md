@@ -14,6 +14,5 @@ also please upvote it!!
 
 ## Support Server
 
-<a href="https://discordapp.com/api/guilds/533779781326471179/widget.json" >
-  </a>
+<script src="https://discordapp.com/api/guilds/533779781326471179/widget.json"></script>
 
