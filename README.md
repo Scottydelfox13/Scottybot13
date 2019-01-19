@@ -14,5 +14,23 @@ also please upvote it!!
 
 ## Support Server
 
-<a href="https://discordapp.com/widget?id=533779781326471179&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" /> </a>
+<script type="text/javascript" src="//cdn.jsdelivr.net/gh/restingcoder/discord-widget@1.1/discord-widget.min.js"></script>
+<script type="text/javascript">
+    discordWidget.init({
+        serverId: '533779781326471179',
+        title: 'Discord Widget Title',
+        join: true,
+        joinText: 'Join Server',
+        alphabetical: false,
+        theme: 'dark',
+        hideChannels: ['Channel Name 1', 'Channel Name 2'],
+        showAllUsers: true,
+        allUsersDefaultState: true,
+        showNick: false,
+        userName: '',
+        useCDN: true
+    });
+    discordWidget.render();
+</script>
+<div class="discord-widget"></div>
 
