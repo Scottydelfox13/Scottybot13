@@ -14,6 +14,7 @@ also please upvote it!!
 
 ## Support Server
 
-<script src="https://discordapp.com/api/guilds/533779781326471179/widget.json" > 
-</script>
+<a src="https://discordapp.com/widget?id=533779781326471179&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" >
+</a>
+
 
