@@ -14,6 +14,5 @@ also please upvote it!!
 
 ## Support Server
 
-<iframe src="https://discordapp.com/widget?id=533779781326471179&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0">
-</iframe>
+<a href="https://discordapp.com/widget?id=533779781326471179&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" /> </a>
 
