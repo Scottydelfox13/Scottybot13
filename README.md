@@ -18,4 +18,4 @@ In the support server you can suggest new commands and submit bugs or just hango
 
 [![](https://discordapp.com/api/guilds/533779781326471179/embed.png?style=banner1)](https://discord.gg/HTuAE28)
 
-
+[![](https://discordapp.com/widget?id=533779781326471179&theme=dark)](https://discord.gg/HTuAE28)
