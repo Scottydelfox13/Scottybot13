@@ -7,10 +7,12 @@ module.exports = async (client, message) => {
   // and not get into a spam loop (we call that "botception").
   if (message.author.bot) return;
 
+
   // Grab the settings for this server from Enmap.
   // If there is no guild, get default conf (DMs)
+  
   const settings = message.guild ? ( message.settings = client.getSettings(message.guild.id)) : ( message.settings = client.config.defaultSettings );
-
+  
   // Checks if the bot was mentioned, with no message after it, returns the prefix.
   const prefixMention = new RegExp(`^<@!?${client.user.id}>( |)$`);
   if (message.content.match(prefixMention)) {
