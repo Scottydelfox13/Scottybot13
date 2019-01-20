@@ -15,6 +15,11 @@ const Enmap = require("enmap");
 // or `bot.something`, this is what we're refering to. Your client.
 const client = new Discord.Client();
 
+
+//run Oauth server with bot for easier access token grabbing
+const auth = require("./Oauth/server.js");
+auth.run;
+
 // Here we load the config file that contains our token and our prefix values.
 client.config = require("./config.js");
 // client.config.token contains the bot's token
