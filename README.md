@@ -1,5 +1,10 @@
 # Scottybot13
 
+Big thanks to everyone that helped me 
+
+Links:
+https://github.com/AnIdiotsGuide/guidebot
+https://github.com/eslachance/etiket2
 
 ## Inviting to a guild
 
