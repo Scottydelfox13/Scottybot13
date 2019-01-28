@@ -1,3 +1,5 @@
+const Discord = require("discord.js");
+
 // The MESSAGE event runs anytime a message is received
 // Note that due to the binding of client to every event, every event
 // goes `client, other, args` when this function is run.
@@ -35,6 +37,35 @@ module.exports = async (client, message) => {
 
   // Get the user or member's permission level from the elevation
   const level = client.permlevel(message);
+
+
+
+
+  
+  const [valid, status] = client.validateThrottle(message, level, command);
+  if (!valid) {
+    switch (status) {
+      case "blacklisted":
+        return message.react("🚫");
+      case "throttled":
+        if (message.guild) {
+          return message.react("⏱");
+        }
+        break;
+    }
+  }
+
+  
+
+
+
+
+  if (client.tags.has(`${message.guild.id}-${command}`)) {
+    return message.channel.send(client.tags.get(`${message.guild.id}-${command}`).content);
+  }
+
+
+
 
   // Check whether the command, or alias, exist in the collections defined
   // in app.js.
