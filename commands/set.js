@@ -10,7 +10,7 @@
 // const action = args[0]; const key = args[1]; const value = args.slice(2);
 // OR the same as:
 // const [action, key, ...value] = args;
-exports.run = async (client, message, [action, key, ...value], level) => { // eslint-disable-line no-unused-vars
+exports.run = async (client, message, [action, key, ...value], level) => {
 
   // Retrieve current guild settings (merged) and overrides only.
   const settings = message.settings;
