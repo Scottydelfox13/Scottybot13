@@ -14,16 +14,15 @@ const Enmap = require("enmap");
 // some might call it `cootchie`. Either way, when you see `client.something`,
 // or `bot.something`, this is what we're refering to. Your client.
 const client = new Discord.Client();
-
-
-//run Oauth server with bot for easier access token grabbing
-const auth = require("./Oauth/server.js");
-auth.run;
+const DBL = require("dblapi.js");
 
 // Here we load the config file that contains our token and our prefix values.
 client.config = require("./config.js");
 // client.config.token contains the bot's token
 // client.config.prefix contains the message prefix
+
+client.dbl = new DBL(`${client.config.dbltoken}`, client);
+
 
 // Require our logger
 client.logger = require("./modules/Logger");
@@ -32,15 +31,17 @@ client.logger = require("./modules/Logger");
 // the bot, like logs and elevation features.
 require("./modules/functions.js")(client);
 
+
 // Aliases and commands are put in collections where they can be read from,
 // catalogued, listed, etc.
 client.commands = new Enmap();
 client.aliases = new Enmap();
+client.cooldown = new Set();
 
 // Now we integrate the use of Evie's awesome Enhanced Map module, which
 // essentially saves a collection to disk. This is great for per-server configs,
 // and makes things extremely easy for this purpose.
-client.settings = new Enmap({name: "settings"});
+Object.assign(client, Enmap.multi(["settings", "tags", "blacklist"]), {fetchAll: true, cloneLevel: "deep", ensureProps: true});
 
 // We're doing real fancy node 8 async/await stuff here, and to do that
 // we need to wrap stuff in an anonymous function. It's annoying but it works.
@@ -69,6 +70,8 @@ const init = async () => {
     // This line is awesome by the way. Just sayin'.
     client.on(eventName, event.bind(null, client));
   });
+
+
 
   // Generate a cache of client permissions for pretty perm names in commands.
   client.levelCache = {};
