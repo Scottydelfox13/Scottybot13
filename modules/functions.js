@@ -2,12 +2,10 @@ module.exports = (client) => {
 
   /*
   PERMISSION LEVEL FUNCTION
-
   This is a very basic permission system for commands which uses "levels"
   "spaces" are intentionally left black so you can add them if you want.
   NEVER GIVE ANYONE BUT OWNER THE LEVEL 10! By default this can run any
   command including the VERY DANGEROUS `eval` and `exec` commands!
-
   */
   client.permlevel = message => {
     let permlvl = 0;
@@ -27,11 +25,9 @@ module.exports = (client) => {
 
   /*
   GUILD SETTINGS FUNCTION
-
   This function merges the default settings (from config.defaultSettings) with any
   guild override you might have for particular guild. If no overrides are present,
   the default settings are used.
-
   */
   client.getSettings = (guild) => {
     const defaults = client.config.defaultSettings || {};
@@ -46,15 +42,11 @@ module.exports = (client) => {
 
   /*
   SINGLE-LINE AWAITMESSAGE
-
   A simple way to grab a single reply, from the user that initiated
   the command. Useful to get "precisions" on certain things...
-
   USAGE
-
   const response = await client.awaitReply(msg, "Favourite Color?");
   msg.reply(`Oh, I really love ${response} too!`);
-
   */
   client.awaitReply = async (msg, question, limit = 60000) => {
     const filter = m => m.author.id === msg.author.id;
@@ -70,7 +62,6 @@ module.exports = (client) => {
 
   /*
   MESSAGE CLEAN FUNCTION
-
   "Clean" removes @everyone pings, as well as tokens, and makes code blocks
   escaped so they're shown more easily. As a bonus it resolves promises
   and stringifies objects!
@@ -85,7 +76,7 @@ module.exports = (client) => {
     text = text
       .replace(/`/g, "`" + String.fromCharCode(8203))
       .replace(/@/g, "@" + String.fromCharCode(8203))
-      .replace(client.token, "mfa.VkO_2G4Qv3T--NO--lWetW_tjND--TOKEN--QFTm6YGtzq9PH--4U--tG0");
+      .replace(client.token || client.config.token, "mfa.VkO_2G4Qv3T--NO--lWetW_tjND--TOKEN--QFTm6YGtzq9PH--4U--tG0");
 
     return text;
   };
@@ -130,7 +121,26 @@ module.exports = (client) => {
     return false;
   };
 
-  /* MISCELANEOUS NON-CRITICAL FUNCTIONS */
+
+
+  client.validateThrottle = (message, level) => {
+    if (client.blacklist.has(`${message.author.id}`)) {
+      return [false, "blacklisted"];
+    }
+    if (client.cooldown.has(message.author.id)) {
+      return [false, "throttled"];
+    } else if (level < 8) {
+      client.cooldown.add(message.author.id);
+      setTimeout(() => {
+        client.cooldown.delete(message.author.id);
+      }, 1500);
+    }
+    return [true, null];
+  };
+
+
+
+  /* miscellaneous NON-CRITICAL FUNCTIONS */
   
   // EXTENDING NATIVE TYPES IS BAD PRACTICE. Why? Because if JavaScript adds this
   // later, this conflicts with native code. Also, if some other lib you use does
