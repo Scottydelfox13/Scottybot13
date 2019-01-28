@@ -13,9 +13,6 @@ exports.run = async (client, message, args, level) => {
     const regex1 = /<a:(\w+):(\d{17,19})>/;
 
 
-
- if ((m = regex.exec(str)) == null) return message.reply("not a valid emoji! you must use a custom emoji, not a unicode emoji");
-
     if ((m = regex.exec(str)) !== null) {
         let emoteid = m[2];
         let emotename = m[1];
@@ -28,9 +25,7 @@ exports.run = async (client, message, args, level) => {
        return message.channel.send({
             embed
           });
-    }
-    if ((m = regex1.exec(str)) == null) return message.reply("not a valid emoji! you must use a custom emoji, not a unicode emoji");
-    if ((m = regex1.exec(str)) !== null) {
+    } else if ((m = regex1.exec(str)) !== null) {
         let emoteid = m[2];
         let emotename = m[1];
         const embed = new Discord.RichEmbed()
@@ -43,7 +38,7 @@ exports.run = async (client, message, args, level) => {
        return message.channel.send({
             embed
           });
-    }
+    } else message.reply("invalid emoji! you must use a custom emoji");
 
           break;
       }
