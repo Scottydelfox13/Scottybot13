@@ -7,14 +7,23 @@
 // However it's, like, super ultra useful for troubleshooting and doing stuff
 // you don't want to put in a command.
 exports.run = async (client, message, args, level) => { // eslint-disable-line no-unused-vars
-  const code = args.join(" ");
-  try {
-    const evaled = eval(code);
-    const clean = await client.clean(client, evaled);
-    message.channel.send(`\n${clean}\n`, {split: true, code: 'js'});
-  } catch (err) {
-    message.channel.send(`\`ERROR\` \`\`\`xl\n${await client.clean(client, err)}\n\`\`\``, {split: true});
-  }
+  const content = message.content.split(' ').slice(1).join(' ');
+  const result = new Promise((resolve, reject) => resolve(eval(content)));
+  
+  return result.then(output => {
+   if (typeof output !== 'string') output = require('util').inspect(output, {
+   depth: 0
+   });
+   if (output.includes(client.token)) output = output.replace(client.token, 'No token');
+  
+   return message.channel.send(output, {code: 'js', split: true});
+  }).catch(err => {
+   err = err.toString();
+  
+   if (err.includes(client.token)) err = err.replace(client.token, 'no token');
+  
+   return message.channel.send(err, {code: 'js', split: true});
+  });
 };
 
 exports.conf = {

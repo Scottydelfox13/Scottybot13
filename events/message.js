@@ -20,20 +20,21 @@ module.exports = async (client, message) => {
     return message.reply(`My prefix on this guild is \`${settings.prefix}\``);
   }
 
-  //const prefixes = ['s!', 's.', `${settings.prefix}`];
-  //let prefix = false;
- // for(const thisPrefix of prefixes) {
-  //  if(message.content.includes(thisPrefix)) prefix = thisPrefix;
-  //}
-  //if(!prefix) return;
+const guildprefix = settings.prefix.replace(/[\(\)\[\]\{\}\^\$\.\|\*\+\?\\]/g, "\\$&");
 
 
-const prefixes = ['s!', 's.', `${settings.prefix}`, `<@!?${client.user.id}> `];
+const prefixes = ['s!', 's\\.', `${guildprefix}`, `<@!?${client.user.id}> `];
   const prefixRegex = new RegExp(`^(${prefixes.join('|')})`);
   const prefix = message.content.match(prefixRegex);
 
+
 if(!prefix) return;
-
+ 
+
+
+
+
+
 
   // Here we separate our "command" name, and our "arguments" for the command.
   // e.g. if we have the message "+say Is this the real life?" , we'll get the following:
