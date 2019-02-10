@@ -1,14 +1,20 @@
 exports.run = async (client, message, args, level) => {
 
+const math = require('mathjs')
 
-var happycalculator = require('happycalculator');
 var formula = args.slice(0).join(' ');
 if(!formula || !args) return message.reply("you must provide a formula to calculate")
 
+try {
 
-let response = await happycalculator.calculate(formula);
+const f = math.parse(formula)
+const answer = math.simplify(f)
 
-message.channel.send(`The answer is \`${response}\``);
+message.reply(`The answer is \`${answer.toString()}\` `) 
+} catch (err) {
+  message.channel.send("an error occurred")  
+console.log(err)
+}
 
 };
 

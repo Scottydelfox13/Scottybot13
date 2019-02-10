@@ -41,6 +41,6 @@ exports.run = async (client, message, args, level) => {
   exports.help = {
     name: 'ban',
     category: "Moderation",
-    description: 'Bans the mentioned user. [optional flag -id if the user is not in the server]',
-    usage: 'ban [-id <optional>] [mention or userid] [reason]'
+    description: 'Bans the mentioned user.',
+    usage: 'ban [mention or userid] [reason]'
   };

@@ -5,8 +5,6 @@ exports.run = async (client, message, args, level) => {
   });
   await message.reply("Bot has started back up!");
   process.exit(1);
-  
-
 
 };
 

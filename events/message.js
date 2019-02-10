@@ -9,6 +9,7 @@ module.exports = async (client, message) => {
   // and not get into a spam loop (we call that "botception").
   if (message.author.bot) return;
 
+
   // Grab the settings for this server from Enmap.
   // If there is no guild, get default conf (DMs)
   
@@ -20,7 +21,8 @@ module.exports = async (client, message) => {
     return message.reply(`My prefix on this guild is \`${settings.prefix}\``);
   }
 
-const guildprefix = settings.prefix.replace(/[\(\)\[\]\{\}\^\$\.\|\*\+\?\\]/g, "\\$&");
+//make any prefixes that would interfere with regex, not interfere with it
+  const guildprefix = settings.prefix.replace(/[\(\)\[\]\{\}\^\$\.\|\*\+\?\\]/g, "\\$&");
 
 
 const prefixes = ['s!', 's\\.', `${guildprefix}`, `<@!?${client.user.id}> `];
@@ -52,7 +54,7 @@ if(!prefix) return;
 
 
 
-  
+  //checks if anyone is blacklisted/in the cooldown set before running the command
   const [valid, status] = client.validateThrottle(message, level, command);
   if (!valid) {
     switch (status) {

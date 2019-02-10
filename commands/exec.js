@@ -7,7 +7,7 @@ exports.run = async (client, message, args, level) => {
         const execute = await exec(args.join(' '));
         await message.channel.send(`\`\`\`\n${execute.stderr + execute.stdout}\n\`\`\``, {split: true});
     } catch (e) {
-        message.channel.send(`Error: \`\`\`\n${e}\n\`\`\``);
+        message.channel.send(`Error: \`\`\`\n${e}\n\`\`\``, {split: true});
     }
 }; 
 
