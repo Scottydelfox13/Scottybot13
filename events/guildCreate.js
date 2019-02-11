@@ -2,7 +2,7 @@
 
 module.exports = async (client, guild) => {
   
-  client.logger.info(`[GUILD JOIN] ${guild.name} (${guild.id}) added the bot. Owner: ${guild.owner.user.tag} (${guild.owner.user.id})`);
+  client.logger.event(`[GUILD JOIN] ${guild.name} (${guild.id}) added the bot. Owner: ${guild.owner.user.tag} (${guild.owner.user.id})`);
 
   if(!guild.available) return;
   client.user.setActivity(`${client.config.defaultSettings.prefix}help | ${client.guilds.size} Servers`);

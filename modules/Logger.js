@@ -9,9 +9,8 @@ const config = {
     warn: 1,
     debug: 2,
     LOG: 3,
-    info: 4,
+    event: 4,
     cmd: 5,
-    ready: 6,
   
   },
   colors: {
@@ -20,8 +19,8 @@ const config = {
     warn: 'bold yellow',
     LOG: 'bold black whiteBG',
     cmd: 'bold white',
-    info: 'underline cyan',
-    ready: 'green'
+    event: 'bold underline green',
+
   }
 };
 
@@ -48,6 +47,6 @@ const logger = module.exports = winston.createLogger({
   transports: [
     new winston.transports.Console()
   ],
-  level: 'ready'
+  level: 'cmd'
 });
 
