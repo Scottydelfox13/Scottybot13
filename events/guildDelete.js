@@ -2,7 +2,7 @@
 
 module.exports = (client, guild) => {
   
-  client.logger.cmd(`[GUILD LEAVE] ${guild.name} (${guild.id}) removed the bot.`);
+  client.logger.info(`[GUILD LEAVE] ${guild.name} (${guild.id}) removed the bot.`);
 
   if(!guild.available) return;
   client.user.setActivity(`${client.config.defaultSettings.prefix}help | ${client.guilds.size} Servers`);

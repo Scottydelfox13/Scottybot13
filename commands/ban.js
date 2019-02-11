@@ -20,7 +20,7 @@ exports.run = async (client, message, args, level) => {
     if (!user.bot) { await user.send(`you were banned from ${message.guild.name} with reason ${reason}`).catch(console.error); }
     }
   
-
+ 
 // fuck you baltimore
 
 

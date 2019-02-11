@@ -27,8 +27,8 @@ break;
     let delGuil = client.guilds.get(args[0]);
 // Delete a guild
 delGuil.delete()
-  .then(g => console.log(`Deleted the guild ${g}`));
-message.channel.send(`delet achieved`).catch(console.error);
+  .then(g => message.reply(`Deleted the guild ${g}`));
+
   } 
 break;
 

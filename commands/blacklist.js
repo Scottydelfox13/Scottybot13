@@ -1,5 +1,5 @@
 exports.run = async (client, message, args, level) => { // eslint-disable-line no-unused-vars
-
+ 
     let answer = ["Error while processing blacklist command", null];
     switch (message.flags[0]) {
       case "list":

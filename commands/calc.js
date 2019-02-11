@@ -1,19 +1,18 @@
 exports.run = async (client, message, args, level) => {
 
-const math = require('mathjs')
+const math = require('mathjs');
 
 var formula = args.slice(0).join(' ');
-if(!formula || !args) return message.reply("you must provide a formula to calculate")
+if(!formula || !args) return message.reply("you must provide a formula to calculate");
 
 try {
 
-const f = math.parse(formula)
-const answer = math.simplify(f)
+const f = math.parse(formula);
+const answer = math.simplify(f);
 
-message.reply(`The answer is \`${answer.toString()}\` `) 
+message.reply(`The answer is \`${answer.toString()}\` `);
 } catch (err) {
-  message.channel.send("an error occurred")  
-console.log(err)
+  message.channel.send("an error occurred");
 }
 
 };
@@ -31,4 +30,4 @@ exports.help = {
   category: "miscellaneous",
   description: "does simple math equations/expressions.",
   usage: "calc [stuff to be calculated]"
-};
+};

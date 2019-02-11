@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 const randomColor = "#000000".replace(/0/g, function () { return (~~(Math.random() * 16)).toString(16); });
 var emojis = require('node-emoji');
-const punycode = require('punycode')
+const punycode = require('punycode');
 exports.run = async (client, message, args, level) => {
     switch (message.flags[0]) { 
         case "info":
