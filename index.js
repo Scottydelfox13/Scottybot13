@@ -14,14 +14,12 @@ const Enmap = require("enmap");
 // some might call it `cootchie`. Either way, when you see `client.something`,
 // or `bot.something`, this is what we're refering to. Your client.
 const client = new Discord.Client();
-const DBL = require("dblapi.js");
 
 // Here we load the config file that contains our token and our prefix values.
 client.config = require("./config.js");
 // client.config.token contains the bot's token
 // client.config.prefix contains the message prefix
 
-client.dbl = new DBL(`${client.config.dbltoken}`, client);
 
 
 // Require our logger

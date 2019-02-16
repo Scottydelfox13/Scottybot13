@@ -16,16 +16,37 @@ const config = {
   // DO NOT LEAVE ANY OF THESE BLANK, AS YOU WILL NOT BE ABLE TO UPDATE THEM
   // VIA COMMANDS IN THE GUILD.
   
-  "defaultSettings" : {
-    "prefix": "-",
-    "modLogChannel": "mod-log",
-    "modRole": "Moderator",
-    "adminRole": "Administrator",
-    "systemNotice": "true", // This gives a notice when a user tries to run a command that they do not have permission to use.
-    "welcomeChannel": "welcome",
-    "welcomeMessage": "Say hello to {{user}}, everyone! We all need a warm welcome sometimes :D",
-    "welcomeEnabled": "false"
+ "defaultSettings" : {
+    "prefix": {
+      value: "s!"
+    },
+    "modLogChannel": { 
+      value: "mod-log",
+      type: "channel" 
   },
+    "modRole": {
+      value: "Moderator",
+      type: "role"
+  },
+    "systemNotice": {
+      value: "true"
+    },
+    "welcomeChannel": {
+      value: "welcome",
+      type: "channel"
+    },
+    "welcomeMessage": {
+      value: "Welcome to the server {{userMention}} :D",
+      enabled: false
+    },
+    "leaveMessage": {
+      value: "Goodbye {{user}} D:",
+      enabled: false
+    },
+  },
+ 
+  //banned server array
+  "bannedServers": [],
 
   // PERMISSION LEVEL DEFINITIONS.
 
@@ -48,7 +69,7 @@ const config = {
       // If they don't then return false, which will prevent them from executing the command.
       check: (message) => {
         try {
-          const modRole = message.guild.roles.find(r => r.name.toLowerCase() === message.settings.modRole.toLowerCase());
+          const modRole = message.guild.roles.find(r => r.name.toLowerCase() === message.settings.modRole.value.toLowerCase());
           if (modRole && message.member.roles.has(modRole.id)) return true;
         } catch (e) {
           return false;
@@ -57,11 +78,10 @@ const config = {
     },
 
     { level: 3,
-      name: "Administrator", 
+      name: "Administrator", //use permissions for level 3 , not sure why this works but it does
       check: (message) => {
-        try {
-          const adminRole = message.guild.roles.find(r => r.name.toLowerCase() === message.settings.adminRole.toLowerCase());
-          return (adminRole && message.member.roles.has(adminRole.id));
+        try { //makes level three go off of permissions instead of a role name
+         if (message.member.hasPermission('ADMINISTRATOR', false, true, true)) return true;
         } catch (e) {
           return false;
         }
@@ -102,3 +122,4 @@ const config = {
 };
 
 module.exports = config;
+
