@@ -5,7 +5,7 @@ module.exports = (client, guild) => {
   client.logger.event(`[GUILD LEAVE] ${guild.name} (${guild.id}) removed the bot.`);
 
   if(!guild.available) return;
-  client.user.setActivity(`${client.config.defaultSettings.prefix}help | ${client.guilds.size} Servers`);
+  client.user.setActivity(`${client.config.defaultSettings.prefix.value}help | ${client.guilds.size} Servers`);
 
   if(client.config.bannedServers.includes(guild.id)) return;
 

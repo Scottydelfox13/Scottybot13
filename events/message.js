@@ -22,7 +22,7 @@ module.exports = async (client, message) => {
   }
 
 //make any prefixes that would interfere with regex, not interfere with it
-  const guildprefix = settings.prefix.replace(/[()[\]{}^$.|*+?\\]/g, "\\$&");
+  const guildprefix = settings.prefix.value.replace(/[()[\]{}^$.|*+?\\]/g, "\\$&");
 
 
 const prefixes = ['s!', 's\\.', `${guildprefix}`, `<@!?${client.user.id}> `];
@@ -87,13 +87,15 @@ if(message.guild) {
   // and clean way to grab one of 2 values!
   if (!cmd) return;
 
-  // Some commands may not be useable in DMs. This check prevents those commands from running
+if(cmd.conf.enabled !== true) return message.reply("this command is currently disabled!");
+  
+// Some commands may not be useable in DMs. This check prevents those commands from running
   // and return a friendly error message.
   if (cmd && !message.guild && cmd.conf.guildOnly)
     return message.channel.send("This command is unavailable via private message. Please run this command in a guild.");
 
   if (level < client.levelCache[cmd.conf.permLevel]) {
-    if (settings.systemNotice === "true") {
+    if (settings.systemNotice.value === "true") {
       return message.channel.send(`You do not have permission to use this command.
   Your permission level is ${level} (${client.config.permLevels.find(l => l.level === level).name})
   This command requires level ${client.levelCache[cmd.conf.permLevel]} (${cmd.conf.permLevel})`);

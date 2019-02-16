@@ -8,7 +8,7 @@ const config = {
     error: 0,
     warn: 1,
     debug: 2,
-    LOG: 3,
+    info: 3,
     event: 4,
     cmd: 5,
   
@@ -17,7 +17,7 @@ const config = {
     error: 'bold red',
     debug: 'blue',
     warn: 'bold yellow',
-    LOG: 'bold black whiteBG',
+    info: 'bold black whiteBG',
     cmd: 'bold white',
     event: 'bold underline green',
 
@@ -38,7 +38,7 @@ const logger = module.exports = winston.createLogger({
       return info;
     })(),
      winston.format.timestamp({
-      format: 'MM-DD HH:mm:ss'
+      format: 'MMMM Do YYYY, h:mm:ss a'
     }),
     winston.format.colorize(),
     custom
@@ -49,4 +49,3 @@ const logger = module.exports = winston.createLogger({
   ],
   level: 'cmd'
 });
-

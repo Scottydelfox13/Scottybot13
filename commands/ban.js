@@ -3,7 +3,7 @@ exports.run = async (client, message, args, level) => {
     
     let reason = args.slice(1).join(' ');
     let user = message.mentions.users.first() || client.users.get(args[0]);
-
+    if (!user) return message.reply('You must mention someone or supply a user id to ban them.');
     if (!user) user = await client.fetchUser(args[0]); 
    
     if (!message.guild.me.hasPermission(['BAN_MEMBERS'])) return message.reply('Missing the required `Ban members` permission!');

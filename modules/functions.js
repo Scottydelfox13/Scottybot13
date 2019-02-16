@@ -30,7 +30,7 @@ module.exports = (client) => {
   the default settings are used.
   */
   client.getSettings = (guild) => {
-    const defaults = client.config.defaultSettings || {};
+    const defaults = client.config.defaultSettings;
     if (!guild) return defaults;
     const guildData = client.settings.get(guild) || {};
     const returnObject = {};
@@ -63,7 +63,7 @@ module.exports = (client) => {
 
   client.loadCommand = (commandName) => {
     try {
-      client.logger.LOG(`Loading Command: ${commandName}`);
+      client.logger.log("info", `Loading Command: ${commandName}`);
       const props = require(`../commands/${commandName}`);
       if (props.init) {
         props.init(client);
@@ -113,11 +113,10 @@ module.exports = (client) => {
       client.cooldown.add(message.author.id);
       setTimeout(() => {
         client.cooldown.delete(message.author.id);
-      }, 1500);
+      }, 3000);
     }
     return [true, null];
   };
-
 
 
   /* miscellaneous NON-CRITICAL FUNCTIONS */

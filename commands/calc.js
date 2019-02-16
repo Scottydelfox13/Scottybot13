@@ -2,17 +2,17 @@ exports.run = async (client, message, args, level) => {
 
 const math = require('mathjs');
 
+
 var formula = args.slice(0).join(' ');
 if(!formula || !args) return message.reply("you must provide a formula to calculate");
-
 try {
+const f = math.parse(formula)
+let simplified = math.simplify(f)
 
-const f = math.parse(formula);
-const answer = math.simplify(f);
+message.reply(`The answer is \`${simplified}\``);
 
-message.reply(`The answer is \`${answer.toString()}\` `);
 } catch (err) {
-  message.channel.send("an error occurred");
+  message.channel.send(`an error occurred ${err}`);
 }
 
 };
