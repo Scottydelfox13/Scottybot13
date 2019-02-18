@@ -19,7 +19,7 @@ exports.run = (client, message, args, level) => {
         });
         message.channel.send(output, {
             code: "asciidoc",
-            break: "true"
+            split: true
         });
     } else {
         // Show individual command's help.
@@ -30,13 +30,13 @@ exports.run = (client, message, args, level) => {
             command = client.commands.get(command);
             if (level < client.levelCache[command.conf.permLevel]) return;
             if (command.conf.aliases[0]) {
-                alias = `\naliases::${command.conf.aliases.toString().replace(",", ", ")}`;
+                alias = `\naliases::${command.conf.aliases.join(", ")}`;
             }
             if (command.help.extended) {
                 extended = `\nextended::${command.help.extended}`;
             }
             message.channel.send(`= ${command.help.name} = \n${command.help.description}\nusage::${command.help.usage}${alias}${extended}`, {
-                code: "asciidoc"
+                code: "asciidoc", split: true
             });
         } else if (client.aliases.has(args[0])) {
             command = client.commands.get(client.aliases.get(args[0]));

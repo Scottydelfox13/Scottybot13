@@ -49,9 +49,12 @@ break;
 case 'invite': { 
   let guild = client.guilds.get(args[0]);
   if(!guild) return message.reply("must provide a guild ID");
-  let invite = client.guilds.get(guild.id).channels.find(c => c.type === "text").createInvite({maxAge: 0}).then(function(newInvite){
+  try {
+  client.guilds.get(guild.id).channels.find(c => c.type === "text").createInvite({maxAge: 0}).then(function(newInvite){
     message.channel.send(`invite link to ${guild.name}: https://discord.gg/` + newInvite.code); });
-
+  } catch (err) {
+    message.channel.send(`an error occurred! ${err}`, {disableEveryone: true});
+  }
 
 
 }

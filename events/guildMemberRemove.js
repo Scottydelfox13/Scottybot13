@@ -4,7 +4,7 @@ module.exports = async (client, member) => {
     const settings = client.getSettings(member.guild.id);
   
 
-    if (!settings.welcomeMessage.enabled) return;
+    if (!settings.leaveMessage.enabled) return;
 
     const leaveMessage = settings.leaveMessage.value.replace("{{user}}", member.user.username).replace("{{userMention}}", `<@${member.user.id}>`);
   

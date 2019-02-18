@@ -9,10 +9,9 @@ try {
 const f = math.parse(formula)
 let simplified = math.simplify(f)
 
-message.reply(`The answer is \`${simplified}\``);
-
+message.reply(`The answer is \`${simplified}\``, {split: true, disableEveryone: true});
 } catch (err) {
-  message.channel.send(`an error occurred ${err}`);
+  message.channel.send(`an error occurred ${err}`, {split: true, disableEveryone: true});
 }
 
 };
