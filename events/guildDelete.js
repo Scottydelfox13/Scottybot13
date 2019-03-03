@@ -7,7 +7,6 @@ module.exports = (client, guild) => {
   if(!guild.available) return;
   client.user.setActivity(`${client.config.defaultSettings.prefix.value}help | ${client.guilds.size} Servers`);
 
-  if(client.config.bannedServers.includes(guild.id)) return;
 
   try {
   client.channels.get('533877857856913409').send(`:heavy_multiplication_x: Left Guild ${guild.name} (${guild.id}) now in ${client.guilds.size} servers.`);

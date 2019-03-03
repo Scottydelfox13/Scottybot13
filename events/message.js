@@ -54,25 +54,11 @@ if(!prefix) return;
 
 
 
-  //checks if anyone is blacklisted/in the cooldown set before running the command
-  const [valid, status] = client.validateThrottle(message, level, command);
-  if (!valid) {
-    switch (status) {
-      case "blacklisted":
-        return message.react("🚫");
-      case "throttled":
-        if (message.guild) {
-          return message.react("⏱");
-        }
-        break;
-    }
-  }
 
   
 
 
 if(message.guild) {
-
   if (client.tags.has(`${message.guild.id}-${command}`)) {
     return message.channel.send(client.tags.get(`${message.guild.id}-${command}`).content);
   }
@@ -86,6 +72,22 @@ if(message.guild) {
   // using this const varName = thing OR otherthign; is a pretty efficient
   // and clean way to grab one of 2 values!
   if (!cmd) return;
+
+  //checks if anyone is blacklisted/in the cooldown set before running the command
+  const [valid, status] = client.validateThrottle(message, level, cmd);
+  if (!valid) {
+    switch (status) {
+      case "blacklisted":
+        return message.react("🚫");
+      case "throttled":
+        if (message.guild) {
+          return message.react("⏱");
+        }
+        break;
+    }
+  }
+
+
 
 if(cmd.conf.enabled !== true) return message.reply("this command is currently disabled!");
   

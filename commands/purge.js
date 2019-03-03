@@ -6,10 +6,9 @@ exports.run = async (client, message, args, level) => {
   if (!message.guild.me.hasPermission(['MANAGE_MESSAGES'])) return message.reply('i am Missing the required `manage messages` permission!');
   
   
-  if(!messagecount) return message.reply("you must specify a number of messages to delet");
+  if(!messagecount) return message.reply("you must specify a number of messages to delete");
 
   if(messagecount > 100) return message.reply("can only purge up to 100 messages stupid");
-
 
 if(user) {
 await message.delete();

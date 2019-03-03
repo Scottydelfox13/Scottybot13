@@ -103,7 +103,7 @@ module.exports = (client) => {
 
 
 
-  client.validateThrottle = (message, level) => {
+  client.validateThrottle = (message, level, cmd) => {
     if (client.blacklist.has(`${message.author.id}`)) {
       return [false, "blacklisted"];
     }
@@ -113,7 +113,7 @@ module.exports = (client) => {
       client.cooldown.add(message.author.id);
       setTimeout(() => {
         client.cooldown.delete(message.author.id);
-      }, 3000);
+      }, cmd.conf.cooldown * 1000 || 3000);
     }
     return [true, null];
   };

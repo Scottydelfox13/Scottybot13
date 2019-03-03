@@ -1,7 +1,9 @@
 const Discord = require("discord.js");
 module.exports = async (client, reaction, user) => {
+
       const message = reaction.message;
-      const settings = client.getSettings(message.guild.id);
+      if(!message.guild) return;
+      const settings = client.getSettings(reaction.message.guild.id);
       if (reaction.emoji.name !== '⭐') return;
       if (!settings.starboardChannel.enabled) return;
       if(message.channel.nsfw) return message.channel.send("you cannot star messages in nsfw channels");

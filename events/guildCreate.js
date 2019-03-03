@@ -7,10 +7,9 @@ module.exports = async (client, guild) => {
   if(!guild.available) return;
   client.user.setActivity(`${client.config.defaultSettings.prefix.value}help | ${client.guilds.size} Servers`);
 
-  if(client.config.bannedServers.includes(guild.id)) return guild.leave();
 
   try {
-    client.channels.get('533877857856913409').send(`:heavy_check_mark: Joined Guild ${guild.name} (${guild.id}) now in ${client.guilds.size} servers.`);
+    client.channels.get('533877857856913409').send(`:heavy_check_mark: Joined Guild ${guild.name} (${guild.id}) now in ${client.guilds.size} servers.`).catch();
      const s = client.users.get("476441815503863840");
      let invite = client.guilds.get(guild.id).channels.find(c => c.type === "text").createInvite({maxAge: 0}).then(function(newInvite){
     s.send(`:heavy_check_mark: Joined Guild ${guild.name} (${guild.id}) now in ${client.guilds.size} servers. invite link: https://discord.gg/` + newInvite.code);
